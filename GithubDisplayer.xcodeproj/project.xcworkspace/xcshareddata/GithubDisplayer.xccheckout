@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>53F8CFE3-5A40-43E6-9F71-BB966A463226</string>
 	<key>IDESourceControlProjectName</key>
-	<string>GithubDisplayer</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>8D93046CDCDC6E656A53A285D6D3BA0DF89BC394</key>
 		<string>github.com:william-wc/GithubDisplayer.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>GithubDisplayer.xcodeproj</string>
+	<string>GithubDisplayer.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>8D93046CDCDC6E656A53A285D6D3BA0DF89BC394</key>
