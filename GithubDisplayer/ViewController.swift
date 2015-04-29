@@ -14,12 +14,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         tryConnection()
+        
     }
     
     func tryConnection() {
-        ConnectionManager.sendRequest("https://api.github.com/users/william-wc", callback: { (data, error) -> Void in
-            println(data)
-        })
         
     }
 

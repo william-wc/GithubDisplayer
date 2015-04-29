@@ -8,9 +8,9 @@
 
 import Foundation
 
-class ConnectionManager {
+public class ConnectionManager {
     
-    private static let GITHUB_TOKEN = "2486ddfbf425a2bc43549bf2cc416731a2a3ca82"
+    
     private static let TIMEOUT_INTERVAL = 40.0
     
     
@@ -21,8 +21,7 @@ class ConnectionManager {
                 if error != nil {
                     callback("", error.localizedDescription)
                 } else {
-                    callback(NSString(data: data, encoding: NSUTF8StringEncoding)! as String,
-                        nil)
+                    callback(NSString(data: data, encoding: NSUTF8StringEncoding)! as String, nil)
                 }
         })
         task.resume()
@@ -33,19 +32,34 @@ class ConnectionManager {
         sendRequest(request, callback: callback)
     }
     
-    static func sendRequestJSON(url: String, callback: (Dictionary<String, AnyObject>, String?) -> Void) {
-        var request = NSMutableURLRequest(URL: NSURL(string: url)!)
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
-        sendRequest(request,
-            callback: { (data:String, error:String?) -> Void in
-                if error != nil {
-                    callback(Dictionary<String, AnyObject>(), error)
-                } else {
-                    //var json = JSONParseDict(data)
-                    
-                }
-        })
+
+    
+    static func JSONParseDict(jsonString:String) -> Dictionary<String, AnyObject> {
+        var e: NSError?
+        var data: NSData = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
+        var jsonObj = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &e) as! Dictionary<String, AnyObject>
         
+        if e != nil {
+            return Dictionary<String, AnyObject>()
+        } else {
+            return jsonObj
+        }
+    }
+    
+    static func HTTPGetJSON(url: String, callback: (Dictionary<String, AnyObject>, String?) -> Void) {
+        var authentication = "d2lsbGlhbWhqY2hvQGdtYWlsLmNvbTpNeXMzY3IzdFA0c3NXMHJk" //("user:pass".dataUsingEncoding(NSUTF8StringEncoding))!.base64EncodedStringWithOptions(nil)
+
+        var request = NSMutableURLRequest(URL: NSURL(string: url)!)
+        request.setValue("Basic \(authentication)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json" , forHTTPHeaderField: "Accept")
+        sendRequest(request, callback: { (data, error) -> Void in
+            if error != nil {
+                callback(Dictionary<String, AnyObject>(), error)
+            } else {
+                var jsonObj = self.JSONParseDict(data)
+                callback(jsonObj, nil)
+            }
+        })
     }
     
     
