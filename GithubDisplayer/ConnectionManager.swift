@@ -33,8 +33,6 @@ public class ConnectionManager {
         sendRequest(request, callback: callback)
     }
     
-
-    
     static func JSONParse(jsonString:String) -> JSON {
         var e: NSError?
         var data: NSData = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
