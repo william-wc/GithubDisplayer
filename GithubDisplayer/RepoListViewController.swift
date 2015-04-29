@@ -15,6 +15,12 @@ class RepoListViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var user = UserData(user: "william-wc", repo: "", url: BaseURL.User)
+        
+        ConnectionManager.sendRequest(user.getReplaced(), callback: { (str, error) -> Void in
+            println(str)
+        })
     }
     
     

@@ -22,7 +22,7 @@ class ViewController: UIViewController {
         ConnectionManager.sendRequest(url, callback: { (str, error) -> Void in
             println(str)
         })
-//        ConnectionManager.HTTPGetJSON(url, callback: { (json, error) -> Void in
+//        ConnectionManager.sendRequestJSON(url, callback: { (json, error) -> Void in
 //            println(json)
 //        })
     }

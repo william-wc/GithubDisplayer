@@ -45,7 +45,7 @@ public class ConnectionManager {
         return nil
     }
     
-    static func HTTPGetJSON(url: String, callback: (JSON, String?) -> Void) {
+    static func sendRequestJSON(url: String, callback: (JSON, String?) -> Void) {
         var request = NSMutableURLRequest(URL: NSURL(string: url)!)
         request.setValue("Basic \(AUTHENTICATION)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json" , forHTTPHeaderField: "Accept")
@@ -57,6 +57,8 @@ public class ConnectionManager {
             }
         })
     }
+    
+    
     
     
 }
