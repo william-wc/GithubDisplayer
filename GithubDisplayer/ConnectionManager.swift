@@ -35,28 +35,27 @@ public class ConnectionManager {
     
 
     
-    static func JSONParseDict(jsonString:String) -> Dictionary<String, AnyObject> {
+    static func JSONParse(jsonString:String) -> JSON {
         var e: NSError?
         var data: NSData = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
-        var jsonObj = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &e) as! Dictionary<String, AnyObject>
+        var jsonObj = JSON(NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &e)!)
         
-        if e != nil {
-            return Dictionary<String, AnyObject>()
-        } else {
+        if e == nil {
             return jsonObj
         }
+        
+        return nil
     }
     
-    static func HTTPGetJSON(url: String, callback: (Dictionary<String, AnyObject>, String?) -> Void) {
+    static func HTTPGetJSON(url: String, callback: (JSON, String?) -> Void) {
         var request = NSMutableURLRequest(URL: NSURL(string: url)!)
         request.setValue("Basic \(AUTHENTICATION)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json" , forHTTPHeaderField: "Accept")
         sendRequest(request, callback: { (data, error) -> Void in
             if error != nil {
-                callback(Dictionary<String, AnyObject>(), error)
+                callback(JSON(""), error)
             } else {
-                var jsonObj = self.JSONParseDict(data)
-                callback(jsonObj, nil)
+                callback(self.JSONParse(data), nil)
             }
         })
     }
