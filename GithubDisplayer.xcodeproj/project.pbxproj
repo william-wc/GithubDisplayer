@@ -24,6 +24,8 @@
 		8FF19CBA1AF13B0200E04A9D /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF19CB91AF13B0200E04A9D /* CoreDataManager.swift */; };
 		8FF19CBC1AF14F3900E04A9D /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF19CBB1AF14F3900E04A9D /* SwiftyJSON.swift */; };
 		D4AB98B01AF155E500A09AA4 /* GitRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AB98AF1AF155E500A09AA4 /* GitRepo.swift */; };
+		D4AB98B81AF1716500A09AA4 /* GitPull.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AB98B71AF1716500A09AA4 /* GitPull.swift */; };
+		D4AB98BA1AF1716600A09AA4 /* GitLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AB98B91AF1716600A09AA4 /* GitLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +60,8 @@
 		8FF19CB91AF13B0200E04A9D /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		8FF19CBB1AF14F3900E04A9D /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		D4AB98AF1AF155E500A09AA4 /* GitRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitRepo.swift; sourceTree = "<group>"; };
+		D4AB98B71AF1716500A09AA4 /* GitPull.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitPull.swift; sourceTree = "<group>"; };
+		D4AB98B91AF1716600A09AA4 /* GitLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +168,8 @@
 			isa = PBXGroup;
 			children = (
 				8FF19CB71AF1397700E04A9D /* GitUser.swift */,
+				D4AB98B91AF1716600A09AA4 /* GitLabel.swift */,
+				D4AB98B71AF1716500A09AA4 /* GitPull.swift */,
 				D4AB98AF1AF155E500A09AA4 /* GitRepo.swift */,
 			);
 			name = Models;
@@ -270,6 +276,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8FF19CBA1AF13B0200E04A9D /* CoreDataManager.swift in Sources */,
+				D4AB98BA1AF1716600A09AA4 /* GitLabel.swift in Sources */,
 				8F6223DD1AEFEC9F007EF38C /* ViewController.swift in Sources */,
 				D4AB98B01AF155E500A09AA4 /* GitRepo.swift in Sources */,
 				8F6223FD1AEFEEC0007EF38C /* ConnectionManager.swift in Sources */,
@@ -281,6 +288,7 @@
 				8FF19CBC1AF14F3900E04A9D /* SwiftyJSON.swift in Sources */,
 				8F6223D81AEFEC9F007EF38C /* AppDelegate.swift in Sources */,
 				8F00AA3D1AF1666C00A3BCA5 /* RepoCell.swift in Sources */,
+				D4AB98B81AF1716500A09AA4 /* GitPull.swift in Sources */,
 				8F00AA3C1AF1666C00A3BCA5 /* PullRequestViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

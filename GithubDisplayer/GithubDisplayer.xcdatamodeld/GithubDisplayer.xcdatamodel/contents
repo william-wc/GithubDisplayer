@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D136" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="GitLabel" syncable="YES">
+    <entity name="GitLabel" representedClassName="PRODUCT_MODULE_NAME.GitLabel" syncable="YES">
         <attribute name="cor" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nome" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="pull" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GitPull" inverseName="label" inverseEntity="GitPull" syncable="YES"/>
+        <relationship name="repo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GitRepo" inverseName="label" inverseEntity="GitRepo" syncable="YES"/>
     </entity>
-    <entity name="GitPull" syncable="YES">
+    <entity name="GitPull" representedClassName="PRODUCT_MODULE_NAME.GitPull" syncable="YES">
         <attribute name="nome" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="numero" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="repositorio" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="label" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GitLabel" syncable="YES"/>
-        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GitUser" syncable="YES"/>
+        <relationship name="label" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GitLabel" inverseName="pull" inverseEntity="GitLabel" syncable="YES"/>
+        <relationship name="repo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GitRepo" inverseName="pull" inverseEntity="GitRepo" syncable="YES"/>
+        <relationship name="user" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GitUser" inverseName="pull" inverseEntity="GitUser" syncable="YES"/>
     </entity>
     <entity name="GitRepo" representedClassName="PRODUCT_MODULE_NAME.GitRepo" syncable="YES">
         <attribute name="full_name" optional="YES" attributeType="String" syncable="YES"/>
@@ -23,9 +26,9 @@
         <attribute name="repo_description" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="size" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="label" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GitLabel" syncable="YES"/>
-        <relationship name="pull" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GitPull" syncable="YES"/>
-        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GitUser" syncable="YES"/>
+        <relationship name="label" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GitLabel" inverseName="repo" inverseEntity="GitLabel" syncable="YES"/>
+        <relationship name="pull" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GitPull" inverseName="repo" inverseEntity="GitPull" syncable="YES"/>
+        <relationship name="user" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GitUser" inverseName="repo" inverseEntity="GitUser" syncable="YES"/>
     </entity>
     <entity name="GitUser" representedClassName="GitUser" syncable="YES">
         <attribute name="avatar_url" optional="YES" attributeType="String" syncable="YES"/>
@@ -38,11 +41,13 @@
         <attribute name="repos_url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="pull" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GitPull" inverseName="user" inverseEntity="GitPull" syncable="YES"/>
+        <relationship name="repo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GitRepo" inverseName="user" inverseEntity="GitRepo" syncable="YES"/>
     </entity>
     <elements>
-        <element name="GitRepo" positionX="-83" positionY="234" width="128" height="253"/>
-        <element name="GitPull" positionX="-297" positionY="108" width="128" height="118"/>
-        <element name="GitLabel" positionX="126" positionY="108" width="128" height="73"/>
-        <element name="GitUser" positionX="-65" positionY="-180" width="128" height="193"/>
+        <element name="GitLabel" positionX="61" positionY="162" width="128" height="103"/>
+        <element name="GitPull" positionX="-360" positionY="153" width="128" height="133"/>
+        <element name="GitUser" positionX="-180" positionY="-198" width="128" height="223"/>
+        <element name="GitRepo" positionX="-144" positionY="305" width="128" height="253"/>
     </elements>
 </model>
