@@ -1,0 +1,14 @@
+
+{nome do item/ exemplo}
+
+
+Repositorio: https://api.github.com/users/{Usuario/mackmobile}
+
+Repositorio específico: https://api.github.com/repos/{Usuario/mackmobile}/{repositorio/iDicionario}
+
+Labels: https://api.github.com/repos/mackmobile/{repositório/iDicionario}/issues/{number/37}/labels
+
+Pull Request(1 página):https://api.github.com/repos/mackmobile/{repo/iDicionario}/pulls
+
+Pull Request(Para mais de 1 página, pode colocar 1, mesmo se tiver 1 pagina): https://api.github.com/repos/mackmobile/{repo/iDicionario}/pulls?page={pagenumber/1}&pulls_only=true&q=is%3Apr+is%3Aopen
+
