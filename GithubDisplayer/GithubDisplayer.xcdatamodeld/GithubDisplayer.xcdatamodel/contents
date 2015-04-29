@@ -16,36 +16,16 @@
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="repository" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GitUser" syncable="YES"/>
     </entity>
-    <entity name="GitUser" representedClassName="PRODUCT_MODULE_NAME.GitUser" syncable="YES">
+    <entity name="GitUser" representedClassName="GitUser" syncable="YES">
         <attribute name="avatar_url" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="bio" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="blog" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="company" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="created_at" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="events_url" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="followers" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="followers_url" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="following" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="following_url" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="gists_url" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="gravatar_id" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="hireable" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="html_url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="login" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="organizations_url" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="public_gists" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="public_repos" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="received_events_url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="repos_url" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="site_admin" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="starred_url" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="subscritions_url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="updated_at" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="repository" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GitRepo" syncable="YES"/>
     </entity>

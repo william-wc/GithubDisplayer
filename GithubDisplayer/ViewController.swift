@@ -18,7 +18,9 @@ class ViewController: UIViewController {
     }
     
     func tryConnection() {
-        
+//        ConnectionManager.sendRequest("https://api.github.com/users/mackmobile/repos", callback: { (str, error) -> Void in
+//            println(str)
+//        })
     }
 
     override func didReceiveMemoryWarning() {

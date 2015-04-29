@@ -12,11 +12,13 @@ import UIKit
 
 public class CoreDataManager {
     
+    private static var context = {
+        return (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+    }()
+    
     static func makeGitUser(json:Dictionary<String, AnyObject>) -> GitUser {
-        let context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
-        var user = GitUser(
-            entity: NSEntityDescription.entityForName("GitUser", inManagedObjectContext: context!)!,
-            insertIntoManagedObjectContext: context!)
+        var user = GitUser(entity: NSEntityDescription.entityForName("GitUser", inManagedObjectContext: context!)!,
+            insertIntoManagedObjectContext: context)
         user.setDataJSON(json)
         return user
     }

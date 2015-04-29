@@ -10,7 +10,7 @@ import Foundation
 
 public class ConnectionManager {
     
-    
+    private static let AUTHENTICATION = "d2lsbGlhbWhqY2hvQGdtYWlsLmNvbTpNeXMzY3IzdFA0c3NXMHJk"
     private static let TIMEOUT_INTERVAL = 40.0
     
     
@@ -29,6 +29,7 @@ public class ConnectionManager {
     
     static func sendRequest(url:String, callback: (String, String?) -> Void) {
         var request = NSMutableURLRequest(URL: NSURL(string: url)!)
+        request.setValue("Basic \(AUTHENTICATION)", forHTTPHeaderField: "Authorization")
         sendRequest(request, callback: callback)
     }
     
@@ -47,10 +48,8 @@ public class ConnectionManager {
     }
     
     static func HTTPGetJSON(url: String, callback: (Dictionary<String, AnyObject>, String?) -> Void) {
-        var authentication = "d2lsbGlhbWhqY2hvQGdtYWlsLmNvbTpNeXMzY3IzdFA0c3NXMHJk" //("user:pass".dataUsingEncoding(NSUTF8StringEncoding))!.base64EncodedStringWithOptions(nil)
-
         var request = NSMutableURLRequest(URL: NSURL(string: url)!)
-        request.setValue("Basic \(authentication)", forHTTPHeaderField: "Authorization")
+        request.setValue("Basic \(AUTHENTICATION)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json" , forHTTPHeaderField: "Accept")
         sendRequest(request, callback: { (data, error) -> Void in
             if error != nil {
