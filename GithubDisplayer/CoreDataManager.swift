@@ -12,16 +12,7 @@ import UIKit
 
 public class CoreDataManager {
     
-    public struct Entities {
-        static let GitUser :String = "GitUser"
-        static let GitPull :String = "GitPull"
-        static let GitRepo :String = "GitRepo"
-        static let GitLabel:String = "GitLabel"
-    }
-    
-    public static let context = {
-        return (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext!
-    }()
+    public static let context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext!
     
     /*
     Base

@@ -12,3 +12,31 @@ Pull Request(1 página):https://api.github.com/repos/mackmobile/{repo/iDicionari
 
 Pull Request(Para mais de 1 página, pode colocar 1, mesmo se tiver 1 pagina): https://api.github.com/repos/mackmobile/{repo/iDicionario}/pulls?page={pagenumber/1}&pulls_only=true&q=is%3Apr+is%3Aopen
 
+
+actInd.hidden=true
+        msgLbl.text="Por favor aguarde..."
+        
+        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+        dispatch_async(dispatch_get_global_queue(priority, 0), { () -> () in
+            dispatch_async(dispatch_get_main_queue(), {
+                self.actInd.hidden = false
+                self.actInd.startAnimating()
+                self.actInd.hidesWhenStopped = true
+                self.msgLbl.text = "Logando..."
+            })
+            sleep(5)
+            dispatch_async(dispatch_get_main_queue(), {
+                self.msgLbl.text = "Usuário logado com sucesso\nCarregando dados..."
+            })
+            sleep(5)
+            dispatch_async(dispatch_get_main_queue(), {
+                self.msgLbl.text = "Dados carregados\nPreparando aplicação..."
+            })
+            println("FIM da Thread")
+            dispatch_async(dispatch_get_main_queue(), {
+                self.actInd.stopAnimating()
+                self.blur.removeFromSuperview()
+
+            })
+        })
+            println("FIM")

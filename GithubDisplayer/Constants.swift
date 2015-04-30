@@ -8,6 +8,12 @@
 
 import Foundation
 
+public struct Entities {
+    static let GitUser :String = "GitUser"
+    static let GitPull :String = "GitPull"
+    static let GitRepo :String = "GitRepo"
+    static let GitLabel:String = "GitLabel"
+}
 
 enum GitURL: String {
     case Base       = "https://api.github.com/"

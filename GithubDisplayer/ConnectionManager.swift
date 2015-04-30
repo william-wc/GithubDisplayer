@@ -29,8 +29,8 @@ public class ConnectionManager {
                     callback(NSString(data: data, encoding: NSUTF8StringEncoding)! as String, nil)
                 }
         })
-        task.resume()
         active_tasks.insert(task)
+        task.resume()
         return task.taskIdentifier
     }
     

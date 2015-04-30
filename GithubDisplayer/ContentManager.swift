@@ -12,7 +12,7 @@ import CoreData
 
 class ContentManager {
     
-    static func getRepo() {
+    static func getRepoData(callback:([GitRepo], String?) -> Void) {
         
         var user = UserData(user: "mackmobile", repo: "iDicionario", url: GitURL.UserRepos)
         println(user.toString())
@@ -23,7 +23,16 @@ class ContentManager {
                 return
             }
             
-            println(json)
+            var list = [GitRepo]()
+            
+            
+            for (key:String, repoData:JSON) in json {
+                var repo:GitRepo = CoreDataManager.newGitRepo()
+                repo.setData(repoData)
+                list.append(repo)
+            }
+            
+            callback(list, error)
             
         })
     }

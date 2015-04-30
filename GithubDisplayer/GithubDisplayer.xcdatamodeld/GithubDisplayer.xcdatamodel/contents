@@ -20,7 +20,6 @@
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="labels_url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="owner" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="priv" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="pulls_url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="repo_description" optional="YES" attributeType="String" syncable="YES"/>
@@ -47,7 +46,7 @@
     <elements>
         <element name="GitLabel" positionX="61" positionY="162" width="128" height="30"/>
         <element name="GitPull" positionX="-360" positionY="153" width="128" height="30"/>
-        <element name="GitRepo" positionX="-144" positionY="305" width="128" height="30"/>
+        <element name="GitRepo" positionX="-144" positionY="305" width="128" height="240"/>
         <element name="GitUser" positionX="-180" positionY="-198" width="128" height="30"/>
     </elements>
 </model>
