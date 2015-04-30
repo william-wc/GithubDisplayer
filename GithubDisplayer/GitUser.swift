@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-@objc(GitUser)
+//@objc(GitUser)
 class GitUser: NSManagedObject {
 
     @NSManaged var repos_url: String
@@ -34,6 +34,4 @@ class GitUser: NSManagedObject {
         self.url                 =  json["url"                ] as! String
         self.repos_url           =  json["repos_url"          ] as! String
     }
-
-
 }
