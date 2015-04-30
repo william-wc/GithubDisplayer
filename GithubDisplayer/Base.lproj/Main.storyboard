@@ -27,7 +27,7 @@
                                 <rect key="frame" x="0.0" y="95" width="600" height="505"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="120" id="7mf-hH-vRh" customClass="RepoCell" customModule="GithubDisplayer" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" rowHeight="120" id="7mf-hH-vRh" customClass="RepoCell" customModule="GithubDisplayer" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7mf-hH-vRh" id="ENJ-nl-JMt">
@@ -109,6 +109,33 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="109" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="fNB-WC-d4u">
                                 <rect key="frame" x="16" y="105" width="568" height="495"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <visualEffectView key="tableFooterView" opaque="NO" contentMode="scaleToFill" id="M6X-Bq-Ary">
+                                    <rect key="frame" x="0.0" y="131" width="568" height="128"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="aOA-Km-ivf">
+                                        <rect key="frame" x="0.0" y="0.0" width="568" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <subviews>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="IzY-Fg-fbs">
+                                                <rect key="frame" x="266" y="20" width="37" height="37"/>
+                                                <color key="color" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            </activityIndicatorView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AcP-t2-M9n">
+                                                <rect key="frame" x="263" y="77" width="42" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="IzY-Fg-fbs" firstAttribute="top" secondItem="aOA-Km-ivf" secondAttribute="top" constant="20" id="8ZN-da-W4c"/>
+                                            <constraint firstItem="AcP-t2-M9n" firstAttribute="top" secondItem="IzY-Fg-fbs" secondAttribute="bottom" constant="20" id="f4A-HK-dIo"/>
+                                            <constraint firstAttribute="centerX" secondItem="AcP-t2-M9n" secondAttribute="centerX" id="htX-EF-gd4"/>
+                                            <constraint firstAttribute="centerX" secondItem="IzY-Fg-fbs" secondAttribute="centerX" id="oqt-DW-BnM"/>
+                                        </constraints>
+                                    </view>
+                                    <blurEffect style="light"/>
+                                </visualEffectView>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="109" id="s9R-Nw-Vg2" customClass="PullRequestCell" customModule="GithubDisplayer" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -116,6 +143,10 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="s9R-Nw-Vg2" id="IdT-GI-qjP">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fdK-l0-2yY">
+                                                    <rect key="frame" x="8" y="29" width="552" height="71"/>
+                                                    <color key="backgroundColor" red="0.91764705879999997" green="0.74117647060000003" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="txtTitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="upm-tj-kkz">
                                                     <rect key="frame" x="8" y="8" width="552" height="21"/>
                                                     <constraints>
@@ -125,10 +156,6 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fdK-l0-2yY">
-                                                    <rect key="frame" x="8" y="29" width="552" height="71"/>
-                                                    <color key="backgroundColor" red="0.91764705879999997" green="0.74117647060000003" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="fdK-l0-2yY" firstAttribute="bottom" secondItem="IdT-GI-qjP" secondAttribute="bottomMargin" id="COS-u6-djV"/>
@@ -162,6 +189,11 @@
                             <constraint firstAttribute="trailingMargin" secondItem="fNB-WC-d4u" secondAttribute="trailing" id="eNf-ng-gbe"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="actInd" destination="IzY-Fg-fbs" id="8Ma-VZ-Zt7"/>
+                        <outlet property="blur" destination="aOA-Km-ivf" id="bpa-S3-Q9I"/>
+                        <outlet property="msgLbl" destination="AcP-t2-M9n" id="yY9-V3-TD4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cPe-Vd-f8I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
