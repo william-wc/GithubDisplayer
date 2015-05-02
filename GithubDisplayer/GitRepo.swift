@@ -23,6 +23,8 @@ class GitRepo: NSManagedObject {
     @NSManaged var url                  : String
     @NSManaged var repository           : GitUser
 
+    var owner:GitUser!
+    
     func setData(data:JSON) {
         self.full_name        = data["full_name"       ].stringValue
         self.html_url         = data["html_url"        ].stringValue
@@ -31,7 +33,7 @@ class GitRepo: NSManagedObject {
         self.name             = data["name"            ].stringValue
         self.priv             = 0
         self.pulls_url        = data["pulls_url"       ].stringValue
-        self.repo_description = data["repo_description"].stringValue
+        self.repo_description = data["description"     ].stringValue
         self.size             = data["size"            ].intValue
         self.url              = data["url"             ].stringValue
     }

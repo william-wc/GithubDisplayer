@@ -11,25 +11,27 @@ import UIKit
 
 class RepoListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var table: UITableView!
     private var repositories:[GitRepo]!
-    
-    @IBOutlet weak var table:UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadData()
+        requestData()
     }
     
-    func loadData() {
-        ContentManager.getRepoData { (repos, error) -> Void in
-            if error != nil {
-                
-            }
+    func requestData() {
+        self.table.userInteractionEnabled = false
+        
+        ContentManager.requestUserReposData({ (data, error) -> Void in
+            self.repositories = data
             
-            self.repositories = repos
-            self.table.reloadData()
-        }
+            //table not loading correctly, forced to use main queue
+            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                self.table.reloadData()
+                self.table.userInteractionEnabled = true
+            })
+        })
     }
     
     /*
@@ -40,14 +42,19 @@ class RepoListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return repositories == nil ? 0 : repositories.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var data = repositories[indexPath.row]
         var cell = tableView.dequeueReusableCellWithIdentifier("cell") as! RepoCell
-        
+        cell.txtTitle.text = data.name
+        cell.txtDescription.text = data.repo_description
         return cell
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        ContentManager.currentRepo = repositories[indexPath.row]
+    }
     
 }

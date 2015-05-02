@@ -13,7 +13,13 @@ class GitLabel: NSManagedObject {
 
     @NSManaged var cor: String
     @NSManaged var nome: String
+    @NSManaged var url: String
     @NSManaged var pull: GitPull
     @NSManaged var repo: GitRepo
 
+    func setData(json:JSON) {
+        self.cor = json["color"].stringValue
+        self.nome = json["name"].stringValue
+        self.url = json["url"].stringValue
+    }
 }

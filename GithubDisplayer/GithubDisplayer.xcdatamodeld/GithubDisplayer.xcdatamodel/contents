@@ -3,13 +3,14 @@
     <entity name="GitLabel" representedClassName="GithubDisplayer.GitLabel" syncable="YES">
         <attribute name="cor" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nome" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="pull" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GitPull" inverseName="label" inverseEntity="GitPull" syncable="YES"/>
         <relationship name="repo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GitRepo" inverseName="label" inverseEntity="GitRepo" syncable="YES"/>
     </entity>
     <entity name="GitPull" representedClassName="GithubDisplayer.GitPull" syncable="YES">
-        <attribute name="nome" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="numero" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="repositorio" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="label" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GitLabel" inverseName="pull" inverseEntity="GitLabel" syncable="YES"/>
         <relationship name="repo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GitRepo" inverseName="pull" inverseEntity="GitRepo" syncable="YES"/>
         <relationship name="user" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GitUser" inverseName="pull" inverseEntity="GitUser" syncable="YES"/>
@@ -44,8 +45,8 @@
         <relationship name="repo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GitRepo" inverseName="user" inverseEntity="GitRepo" syncable="YES"/>
     </entity>
     <elements>
-        <element name="GitLabel" positionX="61" positionY="162" width="128" height="30"/>
-        <element name="GitPull" positionX="-360" positionY="153" width="128" height="30"/>
+        <element name="GitLabel" positionX="61" positionY="162" width="128" height="118"/>
+        <element name="GitPull" positionX="-360" positionY="153" width="128" height="133"/>
         <element name="GitRepo" positionX="-144" positionY="305" width="128" height="240"/>
         <element name="GitUser" positionX="-180" positionY="-198" width="128" height="30"/>
     </elements>

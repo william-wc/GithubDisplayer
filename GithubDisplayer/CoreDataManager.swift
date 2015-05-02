@@ -44,8 +44,13 @@ public class CoreDataManager {
         return results
     }
     
+    static func hasGitUser(id:Int) -> Bool {
+        var results = getGitUsers(NSPredicate(format: "id == %d", id))
+        return results.count > 0
+    }
+    
     static func getGitUser(id:Int) -> GitUser? {
-        var request = getGitUsers(NSPredicate(format: "id == %@", String(id)))
+        var request = getGitUsers(NSPredicate(format: "id == %d", id))
         
         var result:GitUser?
         if request.count == 1 {
@@ -65,9 +70,28 @@ public class CoreDataManager {
         return NSEntityDescription.insertNewObjectForEntityForName(Entities.GitRepo, inManagedObjectContext: context) as! GitRepo
     }
     
-    static func getGitRepo(predicate:NSPredicate?) -> Array<GitRepo> {
+    static func getGitRepos(predicate:NSPredicate?) -> Array<GitRepo> {
         var results = getFetchRequest(Entities.GitRepo, predicate: predicate) as! [GitRepo]
         return results
+    }
+    
+    static func hasGitRepo(id:Int) -> Bool {
+        var results = getGitRepos(NSPredicate(format: "id == %d", id))
+        return results.count > 0
+    }
+    
+    static func getGitRepo(id:Int) -> GitRepo? {
+        var request = getGitRepos(NSPredicate(format: "id == %d", id))
+        
+        var result:GitRepo?
+        if request.count == 1 {
+            result = request[0]
+        } else if request.count > 0 {
+            //todo
+        } else {
+            //todo
+        }
+        return result
     }
     
     /*
@@ -82,6 +106,25 @@ public class CoreDataManager {
         return results
     }
     
+    static func hasGitPull(id:Int) -> Bool {
+        var results = getGitPull(NSPredicate(format: "id == %d", id))
+        return results.count > 0
+    }
+    
+    static func getGitPull(id:Int) -> GitPull? {
+        var request = getGitPull(NSPredicate(format: "id == %d", id))
+        
+        var result:GitPull?
+        if request.count == 1 {
+            result = request[0]
+        } else if request.count > 0 {
+            //todo
+        } else {
+            //todo
+        }
+        return result
+    }
+    
     /*
     GitLabel
     */
@@ -92,6 +135,25 @@ public class CoreDataManager {
     static func getGitLabel(predicate:NSPredicate?) -> Array<GitLabel> {
         var results = getFetchRequest(Entities.GitLabel, predicate: predicate) as! [GitLabel]
         return results
+    }
+    
+    static func hasGitLabel(url:String) -> Bool {
+        var results = getGitPull(NSPredicate(format: "url == %@", url))
+        return results.count > 0
+    }
+    
+    static func getGitLabel(url:String) -> GitLabel? {
+        var request = getGitLabel(NSPredicate(format: "id == %@", url))
+        
+        var result:GitLabel?
+        if request.count == 1 {
+            result = request[0]
+        } else if request.count > 0 {
+            //todo
+        } else {
+            //todo
+        }
+        return result
     }
     
     /*
@@ -110,7 +172,7 @@ public class CoreDataManager {
             context.deleteObject(user)
         }
         
-        for repo in getGitRepo(nil) {
+        for repo in getGitRepos(nil) {
             context.deleteObject(repo)
         }
         

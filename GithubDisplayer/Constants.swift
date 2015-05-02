@@ -21,8 +21,8 @@ enum GitURL: String {
     case UserRepos  = "https://api.github.com/users/{u}/repos"
     case Repo       = "https://api.github.com/repos/{r}"
     case Pull       = "https://api.github.com/repos/{u}/{r}/pulls"
-    case Issues     = "https://api.github.com/repos/{u}/{r}/labels"
-    case Label      = "https://api.github.com/repos/{u}/{r}/issues/{i}"
+    case Issues     = "https://api.github.com/repos/{u}/{r}/issues"
+    case Label      = "https://api.github.com/repos/{u}/{r}/labels/{i}"
 
 }
 

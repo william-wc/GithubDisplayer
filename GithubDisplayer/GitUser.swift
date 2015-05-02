@@ -24,14 +24,15 @@ class GitUser: NSManagedObject {
     @NSManaged var id: NSNumber
     
     func setDataJSON(json:JSON) {
-//        self.id                  =  json["id"                 ] as! Int
-//        self.login               =  json["login"              ] as! String
-//        self.type                =  json["type"               ] as! String
-//        self.name                =  json["name"               ] as! String
-//        self.email               =  json["email"              ] as! String
-//        self.company             =  json["company"            ] as! String
-//        self.avatar_url          =  json["avatar_url"         ] as! String
-//        self.url                 =  json["url"                ] as! String
-//        self.repos_url           =  json["repos_url"          ] as! String
+        self.repos_url  = json["repos_url" ].stringValue
+        self.html_url   = json["html_url"  ].stringValue
+        self.url        = json["url"       ].stringValue
+        self.avatar_url = json["avatar_url"].stringValue
+        self.company    = json["company"   ].stringValue
+        self.email      = json["email"     ].stringValue
+        self.name       = json["name"      ].stringValue
+        self.type       = json["type"      ].stringValue
+        self.login      = json["login"     ].stringValue
+        self.id         = json["id"        ].intValue
     }
 }
