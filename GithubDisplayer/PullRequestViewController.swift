@@ -32,7 +32,7 @@ class PullRequestViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("cell") as! UITableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("cell") as! PullRequestCell
 //        cell.textLabel!.text = repositories[indexPath.row] as? String
         return cell
     }

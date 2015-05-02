@@ -11,11 +11,25 @@ import UIKit
 
 class RepoListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    private var repositories:NSMutableArray!
+    private var repositories:[GitRepo]!
+    
+    @IBOutlet weak var table:UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        loadData()
+    }
+    
+    func loadData() {
+        ContentManager.getRepoData { (repos, error) -> Void in
+            if error != nil {
+                
+            }
             
+            self.repositories = repos
+            self.table.reloadData()
+        }
     }
     
     /*
@@ -30,7 +44,7 @@ class RepoListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("cell") as! UITableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("cell") as! RepoCell
         
         return cell
     }

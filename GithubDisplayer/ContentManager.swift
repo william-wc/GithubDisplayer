@@ -9,11 +9,9 @@
 import Foundation
 import CoreData
 
-
 class ContentManager {
     
     static func getRepoData(callback:([GitRepo], String?) -> Void) {
-        
         var user = UserData(user: "mackmobile", repo: "iDicionario", url: GitURL.UserRepos)
         println(user.toString())
         
@@ -24,7 +22,6 @@ class ContentManager {
             }
             
             var list = [GitRepo]()
-            
             
             for (key:String, repoData:JSON) in json {
                 var repo:GitRepo = CoreDataManager.newGitRepo()
