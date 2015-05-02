@@ -11,11 +11,17 @@ import UIKit
 
 class RepoListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    private var repositories:NSMutableArray!
+    @IBOutlet weak var table: UITableView!
+    private var repositories:[GitRepo]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-            
+        
+        ContentManager.getRepoData { (data, error) -> Void in
+            println("reloading")
+            self.repositories = data
+            self.table.reloadData()
+        }
     }
     
     /*
@@ -26,12 +32,14 @@ class RepoListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return repositories == nil ? 0 : repositories.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("cell") as! UITableViewCell
-        
+        var data = repositories[indexPath.row]
+        var cell = tableView.dequeueReusableCellWithIdentifier("cell") as! RepoCell
+        cell.txtTitle.text = data.full_name
+        cell.txtDescription.text = data.repo_description
         return cell
     }
     

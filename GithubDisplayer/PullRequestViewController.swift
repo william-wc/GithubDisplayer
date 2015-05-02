@@ -13,10 +13,42 @@ import UIKit
 class PullRequestViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
+    @IBOutlet var blur: UIView!
+    @IBOutlet var actInd: UIActivityIndicatorView!
+    @IBOutlet var msgLbl: UILabel!
+    
+    
     var repositories: NSMutableArray = NSMutableArray()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        actInd.hidden=true
+        msgLbl.text="Por favor aguarde..."
+        
+        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+        dispatch_async(dispatch_get_global_queue(priority, 0), { () -> () in
+            dispatch_async(dispatch_get_main_queue(), {
+                self.actInd.hidden = false
+                self.actInd.startAnimating()
+                self.actInd.hidesWhenStopped = true
+                self.msgLbl.text = "Logando..."
+            })
+            sleep(5)
+            dispatch_async(dispatch_get_main_queue(), {
+                self.msgLbl.text = "Usuário logado com sucesso\nCarregando dados..."
+            })
+            sleep(5)
+            dispatch_async(dispatch_get_main_queue(), {
+                self.msgLbl.text = "Dados carregados\nPreparando aplicação..."
+            })
+            println("FIM da Thread")
+            dispatch_async(dispatch_get_main_queue(), {
+                self.actInd.stopAnimating()
+                self.blur.removeFromSuperview()
+
+            })
+        })
+            println("FIM")
     }
     
     /*
