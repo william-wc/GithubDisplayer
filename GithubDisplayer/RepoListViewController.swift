@@ -11,12 +11,10 @@ import UIKit
 
 class RepoListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    @IBOutlet weak var table: UITableView!
-    private var repositories:[GitRepo]!
+    private var repositories:NSMutableArray!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         requestData()
     }
     
@@ -42,7 +40,7 @@ class RepoListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return repositories == nil ? 0 : repositories.count
+        return 1
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
