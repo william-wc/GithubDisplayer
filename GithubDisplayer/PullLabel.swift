@@ -31,8 +31,6 @@ class PullLabel: UIView {
     }
     
     func redraw(text:String, color:UIColor) {
-        
-        
         label.text = text
         self.backgroundColor = color
     }

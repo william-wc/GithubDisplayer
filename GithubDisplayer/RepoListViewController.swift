@@ -11,7 +11,8 @@ import UIKit
 
 class RepoListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    private var repositories:NSMutableArray!
+    @IBOutlet var table: UITableView!
+    private var repositories:[GitRepo] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +41,7 @@ class RepoListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return repositories.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

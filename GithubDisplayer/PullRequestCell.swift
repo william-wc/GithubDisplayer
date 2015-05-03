@@ -16,6 +16,5 @@ class PullRequestCell: UITableViewCell {
     
     
     func setLabels() {
-        
     }
 }

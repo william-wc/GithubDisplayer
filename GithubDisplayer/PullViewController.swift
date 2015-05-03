@@ -35,6 +35,12 @@ class PullViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
+    func UIColorFromHex(rgbValue:UInt32, alpha:Double=1.0)->UIColor {
+        let red = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
+        let green = CGFloat((rgbValue & 0xFF00) >> 8)/256.0
+        let blue = CGFloat(rgbValue & 0xFF)/256.0
+        return UIColor(red:red, green:green, blue:blue, alpha:CGFloat(alpha))
+    }
     
     /*
     Table View
@@ -75,19 +81,23 @@ class PullViewController: UIViewController, UITableViewDataSource, UITableViewDe
         println(cell.labels.frame)
         var lastPoint = CGPoint(x: 0, y: 0)
         for lbl:GitLabel in data.labels {
-            var sv = PullLabel(frame: CGRect(x: lastPoint.x, y: lastPoint.y, width: 70, height: 25))
+            var sv = PullLabel(frame: CGRect(x: lastPoint.x, y: lastPoint.y, width: 70, height: 20))
             sv.redraw(lbl.nome, color: UIColor.clearColor())
-            lastPoint.y += 25
+            lastPoint.y += 10
+            var hexCor = NSString(format:"0x%@", lbl.cor)
+//            cell.textLabel?.backgroundColor = UIColorFromHex(hexCor, alpha: 1.0)
+            println(hexCor)
+            
+
 //            if lastPoint.x + sv.frame.width < cell.labels.frame.width {
 //                lastPoint.x += sv.frame.width
 //            } else {
-//                lastPoint.x = 0
+//                lastPoint.x = 10
 //                lastPoint.y += sv.frame.height
 //            }
             
             cell.labels.addSubview(sv)
         }
-        
         return cell
     }
     
