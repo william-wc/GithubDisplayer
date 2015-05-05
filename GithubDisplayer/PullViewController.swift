@@ -35,11 +35,23 @@ class PullViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
-    func UIColorFromHex(rgbValue:UInt32, alpha:Double=1.0)->UIColor {
-        let red = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
-        let green = CGFloat((rgbValue & 0xFF00) >> 8)/256.0
-        let blue = CGFloat(rgbValue & 0xFF)/256.0
-        return UIColor(red:red, green:green, blue:blue, alpha:CGFloat(alpha))
+    func UIColorFromHex(color:String, alpha:Double=1.0)->UIColor {
+        var cString:String = color.uppercaseString
+        
+        var rString = cString.substringToIndex(advance(cString.startIndex, 2))
+        var gString = cString.substringWithRange(Range<String.Index>(start:advance(cString.startIndex, 2), end:advance(cString.startIndex, 4)))
+        var bString = cString.substringWithRange(Range<String.Index>(start:advance(cString.startIndex, 4), end:advance(cString.startIndex, 6)))
+        var r:CUnsignedInt = 0, g:CUnsignedInt = 0, b:CUnsignedInt = 0;
+        
+        var scan:NSScanner!
+        scan = NSScanner(string: rString); scan.scanHexInt(&r)
+        scan = NSScanner(string: gString); scan.scanHexInt(&g)
+        scan = NSScanner(string: bString); scan.scanHexInt(&b)
+        
+        var uic = UIColor(red: CGFloat(r) / 255.0, green: CGFloat(g) / 255.0, blue: CGFloat(b) / 255.0, alpha: CGFloat(alpha))
+//        println("\(cString) \(rString) \(gString) \(bString)")
+//        println("\(r) \(g) \(b)")
+        return uic
     }
     
     /*
@@ -59,42 +71,42 @@ class PullViewController: UIViewController, UITableViewDataSource, UITableViewDe
         var cell:PullCell = tableView.dequeueReusableCellWithIdentifier("cell") as! PullCell
 
         cell.title.text = data.title
-        cell.name.text = data.name
         
+        cell.avatar.image = nil
+        cell.avatar.layer.borderColor = UIColor.clearColor().CGColor
         cell.avatar.layer.cornerRadius = cell.avatar.frame.size.width / 2
         cell.avatar.layer.borderWidth = 1.0
         cell.avatar.clipsToBounds = true
-//        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-//            if let url = NSURL(string: "") {
-//                if let data = NSData(contentsOfURL: url) {
-//                    cell.avatar.image = UIImage(data: data)
-//                }
-//            }
-//        })
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+            if let url = NSURL(string: data.owner!.avatar_url) {
+                if let data = NSData(contentsOfURL: url) {
+                    dispatch_sync(dispatch_get_main_queue(), { () -> Void in
+                        cell.avatar.image = UIImage(data: data)
+                    })
+                }
+            }
+        })
         
         for sv in cell.labels.subviews {
             sv.removeFromSuperview()
         }
         
-        
-        println(cell.labels.bounds)
-        println(cell.labels.frame)
         var lastPoint = CGPoint(x: 0, y: 0)
         for lbl:GitLabel in data.labels {
-            var sv = PullLabel(frame: CGRect(x: lastPoint.x, y: lastPoint.y, width: 70, height: 20))
-            sv.redraw(lbl.nome, color: UIColor.clearColor())
-            lastPoint.y += 10
-            var hexCor = NSString(format:"0x%@", lbl.cor)
-//            cell.textLabel?.backgroundColor = UIColorFromHex(hexCor, alpha: 1.0)
-            println(hexCor)
+            var sv = PullLabel(frame: CGRect(x: 0, y: 0, width: 70, height: 20))
+            sv.redraw(lbl.nome, color: UIColorFromHex(lbl.cor, alpha: 0.3))
             
-
-//            if lastPoint.x + sv.frame.width < cell.labels.frame.width {
-//                lastPoint.x += sv.frame.width
-//            } else {
-//                lastPoint.x = 10
-//                lastPoint.y += sv.frame.height
-//            }
+            sv.frame.origin = CGPoint(x: lastPoint.x, y: lastPoint.y)
+            
+//            println(cell.labels.frame)
+//            println("\(cell.labels.frame.width) \(lastPoint.x + sv.frame.width + sv.frame.width) \(lastPoint.x + sv.frame.width + sv.frame.width < cell.labels.frame.width)")
+            
+            if lastPoint.x + sv.frame.width + sv.frame.width < cell.labels.frame.width {
+                lastPoint.x += sv.frame.width
+            } else {
+                lastPoint.x = 0
+                lastPoint.y += sv.frame.height
+            }
             
             cell.labels.addSubview(sv)
         }

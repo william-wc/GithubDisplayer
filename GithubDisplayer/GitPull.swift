@@ -18,6 +18,7 @@ class GitPull: NSManagedObject {
     @NSManaged var repo: GitRepo
     @NSManaged var user: NSSet
     
+    var owner:GitUser?
     var labels:[GitLabel]!
     
     func setData(json:JSON) {

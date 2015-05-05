@@ -24,11 +24,14 @@ class RepoDetailViewController: UIViewController {
         
         image.layer.cornerRadius = image.frame.size.height / 2
         image.layer.borderWidth = 1.0
+        image.layer.borderColor = UIColor.clearColor().CGColor
         image.clipsToBounds = true
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
             if let url = NSURL(string: self.repository.owner.avatar_url) {
                 if let data = NSData(contentsOfURL: url) {
-                    self.image.image = UIImage(data: data)
+                    dispatch_sync(dispatch_get_main_queue(), { () -> Void in
+                        self.image.image = UIImage(data: data)
+                    })
                 }
             }
         })

@@ -94,7 +94,7 @@ class ContentManager {
                     owner.setDataJSON(jsonData["user"])
                     CoreDataManager.save()
                 }
-                
+                pull.owner = owner
                 pull.labels = [GitLabel]()
                 for (key1:String, jsonLabel:JSON) in jsonData["labels"] {
                     var labelUrl = jsonData["url"].stringValue

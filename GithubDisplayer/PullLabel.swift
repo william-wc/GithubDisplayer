@@ -16,13 +16,11 @@ class PullLabel: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        label = UILabel(frame: frame)
-        label.font.fontWithSize(8.0)
+        label = UILabel(frame: CGRect(origin: CGPoint.zeroPoint, size: frame.size))
+        label.font = UIFont(name: "Helvetica", size: CGFloat(8.0))
+        label.textAlignment = NSTextAlignment.Center
         label.numberOfLines = 0
-        label.lineBreakMode = NSLineBreakMode.ByWordWrapping
-
-        //label.sizeToFit()
-        
+        label.lineBreakMode = NSLineBreakMode.ByWordWrapping        
         self.addSubview(label)
     }
 

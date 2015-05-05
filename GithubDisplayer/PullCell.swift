@@ -12,8 +12,7 @@ import UIKit
 class PullCell: UITableViewCell {
     
     @IBOutlet weak var avatar:UIImageView!
-    @IBOutlet weak var name:UILabel!
     @IBOutlet weak var title:UILabel!
-    @IBOutlet weak var labels:UIScrollView!
+    @IBOutlet weak var labels:UIView!
     
 }
